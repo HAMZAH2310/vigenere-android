@@ -1,9 +1,13 @@
-import React, { FormEvent,ReactElement,useState} from "react";
+import React, { Dispatch, FormEvent,ReactElement,SetStateAction,useState} from "react";
 import VigenereCipher from "../lib/VigenereChip";
 import showEye from '../assets/eye.svg'
 import hideEye from '../assets/eye-slash.svg'
 
-function FormVigenere() : React.ReactElement{
+interface Props{
+  setResult: Dispatch<SetStateAction<string | undefined>>;  
+}
+
+function FormVigenere(props:Props) : React.ReactElement{
 
   const [isValid, setIsValid] = useState<boolean>(true);
   
@@ -28,9 +32,9 @@ function FormVigenere() : React.ReactElement{
   const cipher = new VigenereCipher(password)
 
   if (action === 'encrypt') {
-    console.log(cipher.encrypt(message));
+    props.setResult(cipher.encrypt(message));
   } else if (action === 'original') {
-    console.log(cipher.decrypt(message));
+    props.setResult(cipher.decrypt(message));
   }
   setIsValid(true);
 }
@@ -53,7 +57,6 @@ function FormVigenere() : React.ReactElement{
   return(
     <>
       {error()}
-      <h1 className="text-2xl font-bold">Vigenere Cipher</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb4">
           <textarea 
