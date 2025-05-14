@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">vinegereapp</string>
+    <string name="title_activity_main">vinegereapp</string>
+    <string name="package_name">com.vinegere.app</string>
+    <string name="custom_url_scheme">com.vinegere.app</string>
+</resources>
